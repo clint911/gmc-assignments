@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple-S Online Shopping Store</title>
+</head>
+<body class="font-sans">
+<div id="app">
+  <!-- Header -->
+  <header class="border-b-2 border-black">
+    <nav class="container mx-auto px-4 py-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <h1 class="text-4xl font-black mb-4 md:mb-0">SIMPLE-S</h1>
+        <ul class="flex space-x-6">
+          <li><a href="#" class="neo-button bg-neo-yellow">Home</a></li>
+          <li><a href="#products" class="neo-button bg-neo-pink">Products</a></li>
+          <li><a href="#" class="neo-button bg-neo-blue">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="container mx-auto px-4 py-12">
+    <div class="neo-card bg-neo-yellow mb-12">
+      <h2 class="text-6xl font-black mb-4">FRESH DROPS</h2>
+      <p class="text-xl mb-6">Discover our latest collection of awesome products!</p>
+      <button class="neo-button bg-white">Shop Now →</button>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="container mx-auto px-4 py-12">
+    <h2 class="text-4xl font-black mb-8">Our Products</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Product Card 1 -->
+      <div class="neo-card">
+        <img src="https://via.placeholder.com/300" alt="Product 1" class="w-full mb-4 border-2 border-black">
+        <h3 class="text-xl font-bold mb-2">Cool T-Shirt</h3>
+        <p class="mb-4">Super comfortable cotton t-shirt with unique design</p>
+        <button class="neo-button bg-neo-pink w-full">Shop Now</button>
+      </div>
+      <!-- Product Card 2 -->
+      <div class="neo-card">
+        <img src="https://via.placeholder.com/300" alt="Product 2" class="w-full mb-4 border-2 border-black">
+        <h3 class="text-xl font-bold mb-2">Trendy Sneakers</h3>
+        <p class="mb-4">Limited edition sneakers for your style</p>
+        <button class="neo-button bg-neo-blue w-full">Shop Now</button>
+      </div>
+      <!-- Product Card 3 -->
+      <div class="neo-card">
+        <img src="https://via.placeholder.com/300" alt="Product 3" class="w-full mb-4 border-2 border-black">
+        <h3 class="text-xl font-bold mb-2">Cool Cap</h3>
+        <p class="mb-4">Stylish cap for sunny days</p>
+        <button class="neo-button bg-neo-yellow w-full">Shop Now</button>
+      </div>
+      <!-- Product Card 4 -->
+      <div class="neo-card">
+        <img src="https://via.placeholder.com/300" alt="Product 4" class="w-full mb-4 border-2 border-black">
+        <h3 class="text-xl font-bold mb-2">Awesome Backpack</h3>
+        <p class="mb-4">Spacious backpack for your adventures</p>
+        <button class="neo-button bg-neo-pink w-full">Shop Now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t-2 border-black mt-12">
+    <div class="container mx-auto px-4 py-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-2xl font-bold mb-4">SIMPLE-S</h3>
+          <p>Your go-to store for awesome products!</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">About Us</a></li>
+            <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold mb-4">Newsletter</h4>
+          <div class="flex">
+            <input type="email" placeholder="Your email" class="border-2 border-black p-2 flex-grow">
+            <button class="neo-button bg-neo-yellow ml-2">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
