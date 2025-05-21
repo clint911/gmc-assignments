@@ -1,0 +1,46 @@
+ALGORITHM sentence_analysis
+VAR
+    sentence_length : INTEGER := 0;
+    word_count : INTEGER := 0;
+    vowel_count : INTEGER := 0;
+    current_char : CHAR;
+    is_previous_char_space : BOOLEAN := TRUE; /* To handle multiple spaces and leading/trailing spaces */
+
+BEGIN
+    /* Loop to read characters until a point is encountered */
+    REPEAT
+        Read(current_char);
+        sentence_length := sentence_length + 1; /* Increment total character count */
+
+        /* Check for vowels (case-insensitive) */
+        IF (current_char = 'a') OR (current_char = 'A') OR
+           (current_char = 'e') OR (current_char = 'E') OR
+           (current_char = 'i') OR (current_char = 'I') OR
+           (current_char = 'o') OR (current_char = 'O') OR
+           (current_char = 'u') OR (current_char = 'U') THEN
+            vowel_count := vowel_count + 1;
+        END IF;
+
+        /* Check for word boundaries */
+        IF current_char = ' ' THEN
+            is_previous_char_space := TRUE;
+        ELSE
+            IF is_previous_char_space = TRUE THEN
+                word_count := word_count + 1;
+            END IF;
+            is_previous_char_space := FALSE;
+        END IF;
+
+    UNTIL current_char = '.';
+
+    /* Adjust word_count if the sentence ends with a space before the point */
+    /* This handles cases like "Hello ." where the space before the point shouldn't count as a new word */
+    IF sentence_length > 1 AND (current_char = '.') AND (is_previous_char_space = TRUE) THEN
+        word_count := word_count - 1;
+    END IF;
+
+    /* Display the results */
+    Write("Length of the sentence: ", sentence_length);
+    Write("Number of words: ", word_count);
+    Write("Number of vowels: ", vowel_count);
+END
