@@ -1,0 +1,43 @@
+Function SumOfDistinctElements(Set1: Array of Integers, Set2: Array of Integers) returns Integer
+    sum = 0
+
+    // Create a frequency mapping (or a temporary set/array for seen elements) -> temp element thingy
+    // For simplicity, we'll use a linear search within the loops,
+    // but a hash set would be more efficient for larger sets.
+
+    // Find elements in Set1 that are not in Set2
+    For each element1 in Set1
+        foundInSet2 = false
+        For each element2 in Set2
+            If element1 == element2 Then
+                foundInSet2 = true
+                Break // Exit inner loop, element1 is not distinct
+            End If
+        End For
+        If foundInSet2 == false Then
+            sum = sum + element1
+        End If
+    End For
+
+    // Find elements in Set2 that are not in Set1
+    For each element2 in Set2
+        foundInSet1 = false
+        For each element1 in Set1
+            If element2 == element1 Then
+                foundInSet1 = true
+                Break // Exit inner loop, element2 is not distinct
+            End If
+        End For
+        If foundInSet1 == false Then
+            sum = sum + element2
+        End If
+    End For
+
+    Return sum
+End Function
+
+// Example Usage:
+SetA = [3, 1, 7, 9]
+SetB = [2, 4, 1, 9, 3]
+result = SumOfDistinctElements(SetA, SetB)
+Print "Sum of distinct elements: ", result // Expected Output: 13

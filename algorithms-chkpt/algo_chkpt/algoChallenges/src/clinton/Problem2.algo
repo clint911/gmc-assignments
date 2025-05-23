@@ -1,0 +1,170 @@
+PROCEDURE dot_product(IN v1: ARRAY OF REAL, IN v2: ARRAY OF REAL, OUT ps: REAL)
+    // Description: Calculates the dot product of two vectors v1 and v2
+    //              and stores the result in ps.
+    // Parameters:
+    //   v1 (IN): An array of real numbers representing the first vector.
+    //            Passed by value.
+    //   v2 (IN): An array of real numbers representing the second vector.
+    //            Passed by value.
+    //   ps (OUT): A real number variable to store the calculated dot product.
+    //             Passed by reference, allowing the procedure to modify the caller's variable.
+
+    DECLARE sum: REAL = 0
+    DECLARE i: INTEGER
+
+    // Pre-condition: Assume v1 and v2 have the same length.
+    // In a real implementation, you'd add a check for equal lengths.
+
+    // Loop through the elements of the vectors
+    FOR i FROM 0 TO LENGTH(v1) - 1
+        sum = sum + v1[i] * v2[i]
+    END FOR
+
+    // Assign the calculated sum to the output parameter 'ps'
+    ps = sum
+END PROCEDURE
+
+ALGORITHM CheckOrthogonality_UsingProcedure
+    // Description: Determines orthogonality for 'n' pairs of vectors
+    //              by calling the dot_product procedure.
+
+    DECLARE n: INTEGER               // Number of vector pairs to process
+    DECLARE i: INTEGER               // Loop counter for pairs
+    DECLARE j: INTEGER               // Loop counter for vector elements
+    DECLARE v_size: INTEGER          // Size of the vectors (dimension)
+    DECLARE v1: ARRAY OF REAL        // First vector
+    DECLARE v2: ARRAY OF REAL        // Second vector
+    DECLARE scalar_product: REAL     // Variable to store the dot product result
+
+    OUTPUT "Enter the number of pairs of vectors (n):"
+    INPUT n
+
+    // Outer loop: Iterate 'n' times for each pair of vectors
+    FOR i FROM 1 TO n
+        OUTPUT "--- Processing Pair ", i, " ---"
+
+        // Input for vector v1
+        OUTPUT "Enter the size (dimension) of vector v1:"
+        INPUT v_size
+        ALLOCATE v1[v_size] // Dynamically allocate array based on size
+        OUTPUT "Enter ", v_size, " elements for vector v1, one by one:"
+        // Inner loop: Read elements for v1
+        FOR j FROM 0 TO v_size - 1
+            OUTPUT "v1[", j, "]:"
+            INPUT v1[j]
+        END FOR
+
+        // Input for vector v2
+        // For dot product, vectors must have the same size.
+        // We will assume v2 has the same size as v1 for simplicity based on problem context.
+        ALLOCATE v2[v_size] // v2 must have the same size as v1
+        OUTPUT "Enter ", v_size, " elements for vector v2, one by one:"
+        // Inner loop: Read elements for v2
+        FOR j FROM 0 TO v_size - 1
+            OUTPUT "v2[", j, "]:"
+            INPUT v2[j]
+        END FOR
+
+        // Call the dot_product procedure
+        // v1 and v2 are passed by value (their contents are copied or referenced immutably)
+        // scalar_product is passed by reference (the procedure writes directly to this variable)
+        CALL dot_product(v1, v2, scalar_product)
+
+        OUTPUT "Calculated Dot Product for Pair ", i, ": ", scalar_product
+
+        // Check for orthogonality. Use a small epsilon for floating-point comparison.
+        IF ABS(scalar_product) < 0.0001 THEN
+            OUTPUT "Result: Vectors are orthogonal."
+        ELSE
+            OUTPUT "Result: Vectors are NOT orthogonal."
+        END IF
+        OUTPUT "" // Add a blank line for readability between pairs
+    END FOR
+
+    OUTPUT "Orthogonality check completed for all ", n, " pairs."
+END ALGORITHM
+
+FUNCTION dot_product_func(IN v1: ARRAY OF REAL, IN v2: ARRAY OF REAL): REAL
+    // Description: Calculates the dot product of two vectors v1 and v2
+    //              and returns the result.
+    // Parameters:
+    //   v1 (IN): An array of real numbers representing the first vector.
+    //            Passed by value.
+    //   v2 (IN): An array of real numbers representing the second vector.
+    //            Passed by value.
+    // Returns: A real number representing the calculated dot product.
+
+    DECLARE sum: REAL = 0
+    DECLARE i: INTEGER
+
+    // Pre-condition: Assume v1 and v2 have the same length.
+
+    // Loop through the elements of the vectors
+    FOR i FROM 0 TO LENGTH(v1) - 1
+        sum = sum + v1[i] * v2[i]
+    END FOR
+
+    // Return the calculated sum
+    RETURN sum
+END FUNCTION
+
+ALGORITHM CheckOrthogonality_UsingFunction
+    // Description: Determines orthogonality for 'n' pairs of vectors
+    //              by calling the dot_product_func function.
+
+    DECLARE n: INTEGER               // Number of vector pairs to process
+    DECLARE i: INTEGER               // Loop counter for pairs
+    DECLARE j: INTEGER               // Loop counter for vector elements
+    DECLARE v_size: INTEGER          // Size of the vectors (dimension)
+    DECLARE v1: ARRAY OF REAL        // First vector
+    DECLARE v2: ARRAY OF REAL        // Second vector
+    DECLARE scalar_product: REAL     // Variable to store the dot product result
+
+    OUTPUT "Enter the number of pairs of vectors (n):"
+    INPUT n
+
+    // Outer loop: Iterate 'n' times for each pair of vectors
+    FOR i FROM 1 TO n
+        OUTPUT "--- Processing Pair ", i, " ---"
+
+        // Input for vector v1
+        OUTPUT "Enter the size (dimension) of vector v1:"
+        INPUT v_size
+        ALLOCATE v1[v_size]
+        OUTPUT "Enter ", v_size, " elements for vector v1, one by one:"
+        // Inner loop: Read elements for v1
+        FOR j FROM 0 TO v_size - 1
+            OUTPUT "v1[", j, "]:"
+            INPUT v1[j]
+        END FOR
+
+        // Input for vector v2
+        ALLOCATE v2[v_size]
+        OUTPUT "Enter ", v_size, " elements for vector v2, one by one:"
+        // Inner loop: Read elements for v2
+        FOR j FROM 0 TO v_size - 1
+            OUTPUT "v2[", j, "]:"
+            INPUT v2[j]
+        END FOR
+
+        // Call the dot_product_func function
+        // v1 and v2 are passed by value.
+        // The function returns the result, which is then assigned to scalar_product.
+        scalar_product = dot_product_func(v1, v2)
+
+        OUTPUT "Calculated Dot Product for Pair ", i, ": ", scalar_product
+
+        // Check for orthogonality.
+        IF ABS(scalar_product) < 0.0001 THEN
+            OUTPUT "Result: Vectors are orthogonal."
+        ELSE
+            OUTPUT "Result: Vectors are NOT orthogonal."
+        END IF
+        OUTPUT "" // Add a blank line for readability between pairs
+    END FOR
+
+    OUTPUT "Orthogonality check completed for all ", n, " pairs."
+END ALGORITHM
+
+
+
