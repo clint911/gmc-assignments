@@ -1,0 +1,3 @@
+export myNewProduct = {
+    name: "F
+};
