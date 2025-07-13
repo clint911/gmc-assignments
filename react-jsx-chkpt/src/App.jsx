@@ -1,34 +1,57 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Card, Container, Form, Row, Col } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
+// Import components
+import Name from './components/Name'
+import Price from './components/Price'
+import Description from './components/Description'
+import Image from './components/Image'
+
+// Import products data
+import { products } from './product'
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [userName, setUserName] = useState('')
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Container className="py-5">
+      {/* User name input */}
+      <Form.Group className="mb-4">
+        <Form.Label>Enter your name:</Form.Label>
+        <Form.Control
+          type="text"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          placeholder="Your name"
+        />
+      </Form.Group>
+
+      {/* Conditional welcome message */}
+      {userName && (
+        <div className="welcome-message mb-4">
+          <h2>Welcome, {userName}! 👋</h2>
+          <p>Check out our amazing products below:</p>
+        </div>
+      )}
+
+      {/* Products Grid */}
+      <Row xs={1} md={2} lg={3} className="g-4">
+        {products.map((product) => (
+          <Col key={product.id}>
+            <Card className="product-card h-100">
+              <Image src={product.image} alt={product.name} />
+              <Card.Body>
+                <Name name={product.name} />
+                <Price price={product.price} />
+                <Description description={product.description} />
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
   )
 }
 
