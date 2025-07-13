@@ -1,0 +1,13 @@
+/* Footer.css */
+.footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  border-top: 2px dashed var(--border);
+  font-size: 0.9rem;
+}
+
+.footer p:first-child {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}

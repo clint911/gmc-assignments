@@ -1,26 +1,31 @@
-// components/MovieCard.js
 import React from 'react';
+import { Link } from 'react-router';
 import '../styles/MovieCard.css';
 
 const MovieCard = ({ movie }) => {
   return (
     <div className="movie-card">
       <div className="card-header">
-        <h2>{movie.title}</h2>
+        <Link to={`/movie/${movie.id}`} className="movie-link">
+          <h2>{movie.title}</h2>
+        </Link>
         <div className="rating-badge">⭐ {movie.rating}</div>
       </div>
       
-      <div className="poster-container">
+      <Link to={`/movie/${movie.id}`} className="poster-container">
         <img 
           src={movie.posterURL} 
           alt={movie.title} 
           className="movie-poster"
         />
-      </div>
+      </Link>
       
       <div className="card-footer">
-        <p>{movie.description}</p>
+        <p>{movie.description.substring(0, 100)}...</p>
         <div className="ghibli-stamp">スタジオジブリ</div>
+        <Link to={`/movie/${movie.id}`} className="details-link">
+          View Details →
+        </Link>
       </div>
     </div>
   );
