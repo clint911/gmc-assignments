@@ -1,0 +1,182 @@
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.App {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  animation: fadeIn 0.3s ease-in;
+  width: 100%;
+}
+
+.container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 2rem;
+}
+
+.contact-page {
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add some spacing to the navbar */
+.navbar {
+  margin-bottom: 2rem;
+}
+
+/* Style the main heading */
+h1 {
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Style form elements */
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Add responsive padding */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+/* Contact page specific styles */
+.contact-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.social-links {
+  margin-bottom: 2rem;
+}
+
+.social-link {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #495057;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.social-link:hover {
+  color: #007bff;
+  background-color: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.social-link i {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+/* Form styling */
+.form-control {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+}
+
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Ensure consistent container width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Add some breathing room */
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+/* Card enhancements */
+.card {
+  border: none;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.card-body {
+  padding: 2rem;
+}

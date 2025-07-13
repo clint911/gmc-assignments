@@ -1,33 +1,69 @@
-  What You're Aiming For
+# React + TypeScript + Vite
 
-In this checkpoint, we will make our first contact with React.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Instructions
+Currently, two official plugins are available:
 
-     Install NodeJS and VSCode from the following links:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-o   https://code.visualstudio.com/
+## Expanding the ESLint configuration
 
-o   https://nodejs.org/en
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-·        Create a react-app using the command `npx create-react-app <project-name>` (make sure to replace <project-name> with your project name).
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-·        After creating the react-app, delete all files in the ‘src’ folder except for reportWebVitals.js and index.js
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-·        Create a new file called App.js containing this project's App component. Make sure to import everything you need to import, including react-bootstrap.
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-·         Check out the react-bootstrap documentation, go to the ‘Get Started’ webpage, and install and import the needed modules as specified in the steps.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-·        Inside the App component, create a react fragment (search for react fragments and their uses), and create inside it a div with the className of “App.”
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-·        Inside the div, use react-bootstrap to create a navbar, a heading, and 3 cards (search for navbars, cards, and heading in react-bootstrap).
-
-·        When you finish, run your project using the command `npm start.`
-
-·        For any references, please check the following:
-
-o   https://react.dev/
-
-o   https://react-bootstrap.github.io/
-
-For this project we will use the Blog Figma File we have to convert it to a simple React project.
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
