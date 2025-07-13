@@ -1,0 +1,49 @@
+/* MovieList.css */
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  border: 3px solid var(--border);
+  background-color: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.totoro-placeholder {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1rem;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.totoro-placeholder::before,
+.totoro-placeholder::after {
+  content: '';
+  position: absolute;
+  background-color: #a8a8a8;
+}
+
+.totoro-placeholder::before {
+  top: 40px;
+  left: 30px;
+  width: 40px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.totoro-placeholder::after {
+  top: 40px;
+  right: 30px;
+  width: 40px;
+  height: 20px;
+  border-radius: 50%;
+}
