@@ -1,0 +1,61 @@
+/* src/styles/Header.css */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(20, 20, 30, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #6f42c1, #007bff);
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.app-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.navigation a {
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navigation a:hover {
+    color: #fff;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.profile-icon {
+    width: 30px;
+    height: 30px;
+    background: #444;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
