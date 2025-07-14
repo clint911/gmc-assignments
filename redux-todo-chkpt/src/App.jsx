@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.js
+import React from 'react';
+import { useSelector } from 'react-redux';
+import AddTask from './components/AddTask';
+import ListTask from './components/ListTask';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const tasks = useSelector(state => state.tasks);
+  const filter = useSelector(state => state.filter);
+  
+  // Apply filter
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'done') return task.isDone;
+    if (filter === 'notDone') return !task.isDone;
+    return true;
+  });
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="notebook-app">
+      <div className="notebook-cover">
+        <div className="notebook-title">
+          <h1>Neuromorphic Notes</h1>
+          <div className="subtitle">Redux-powered Todo List</div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      
+      <div className="notebook-paper">
+        <div className="notebook-margin">
+          <div className="margin-line"></div>
+          <div className="margin-line"></div>
+          <div className="margin-line"></div>
+          <div className="margin-line"></div>
+          <div className="margin-line"></div>
+        </div>
+        
+        <div className="notebook-content">
+          <AddTask />
+          <ListTask tasks={filteredTasks} />
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      
+      <div className="notebook-bottom">
+        <div className="page-count">Page 1 of 1</div>
+        <div className="notebook-spine"></div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;

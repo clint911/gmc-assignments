@@ -1,68 +1,420 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Dancing+Script:wght@700&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --paper-color: #f5f0e1;
+  --ink-color: #333;
+  --shadow-light: #f0e6d2;
+  --shadow-dark: #d9d0b8;
+  --accent-color: #e63946;
+  --border-color: #d1c7b0;
+  --completed-color: #8ac926;
+  --margin-color: #f0e6d2;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  background-color: #f8f4e7;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  font-family: 'Caveat', cursive;
+  color: var(--ink-color);
+  padding: 20px;
+  background-image: 
+    radial-gradient(circle, #f0e6d2 1px, transparent 1px),
+    radial-gradient(circle, #f0e6d2 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.handwriting {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  line-height: 1.6;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.handwriting-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.handwritten-input {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed var(--border-color);
+  outline: none;
+  width: 100%;
+  padding: 8px 0;
+  color: var(--ink-color);
+}
+
+.handwritten-input:focus {
+  border-bottom: 2px dashed var(--accent-color);
+}
+
+/* Neuromorphic styles */
+.neuromorphic {
+  border-radius: 10px;
+  background: var(--paper-color);
+  box-shadow: 
+    8px 8px 16px var(--shadow-dark),
+    -8px -8px 16px var(--shadow-light);
+}
+
+.neuromorphic-inset {
+  border-radius: 10px;
+  background: var(--paper-color);
+  box-shadow: 
+    inset 5px 5px 10px var(--shadow-dark),
+    inset -5px -5px 10px var(--shadow-light);
+}
+
+.neuromorphic-pressed {
+  box-shadow: 
+    inset 5px 5px 10px var(--shadow-dark),
+    inset -5px -5px 10px var(--shadow-light);
+}
+
+/* Notebook layout */
+.notebook-app {
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+}
+
+.notebook-cover {
+  background: linear-gradient(135deg, #8a6d3b 0%, #5d4037 100%);
+  border-radius: 8px 8px 0 0;
+  padding: 30px 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.notebook-title {
+  text-align: center;
+  color: #fff;
+}
+
+.notebook-title h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+.notebook-paper {
+  display: flex;
+  background-color: var(--paper-color);
+  min-height: 600px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.notebook-margin {
+  width: 50px;
+  background-color: var(--margin-color);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.margin-line {
+  width: 30px;
+  height: 1px;
+  background-color: #c9bda5;
+  margin: 15px 0;
+}
+
+.notebook-content {
+  flex: 1;
+  padding: 30px;
+  position: relative;
+}
+
+.notebook-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: repeating-linear-gradient(
+    var(--paper-color) 0px,
+    var(--paper-color) 24px,
+    #ddd6c4 25px
+  );
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.notebook-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.page-count {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: #8a6d3b;
+}
+
+.notebook-spine {
+  width: 30px;
+  height: 20px;
+  background: linear-gradient(to right, #5d4037, #8a6d3b);
+  border-radius: 0 0 5px 5px;
+}
+
+/* Task Components */
+.add-task-form {
+  margin-bottom: 30px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.add-button {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    3px 3px 6px var(--shadow-dark),
+    -3px -3px 6px var(--shadow-light);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.add-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    5px 5px 10px var(--shadow-dark),
+    -5px -5px 10px var(--shadow-light);
+}
+
+.add-button:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.ink-effect {
+  position: relative;
+  z-index: 1;
+}
+
+.add-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 0.5s ease;
+}
+
+.add-button:hover::before {
+  clip-path: circle(100% at 50% 50%);
+}
+
+.filter-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.filter-button {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  padding: 5px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-color: var(--accent-color);
+}
+
+.task-list {
+  margin-bottom: 30px;
+}
+
+.task-item {
+  padding: 15px 0;
+  position: relative;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.task-checkbox {
+  flex-shrink: 0;
+}
+
+.neuromorphic-checkbox {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--paper-color);
+  box-shadow: 
+    3px 3px 6px var(--shadow-dark),
+    -3px -3px 6px var(--shadow-light),
+    inset 3px 3px 6px var(--shadow-dark),
+    inset -3px -3px 6px var(--shadow-light);
+  cursor: pointer;
+  position: relative;
+}
+
+.neuromorphic-checkbox:checked {
+  background-color: var(--completed-color);
+  box-shadow: 
+    inset 3px 3px 6px rgba(0, 0, 0, 0.2),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.1);
+}
+
+.neuromorphic-checkbox:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+}
+
+.task-description {
+  flex: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 5px 0;
+}
+
+.task-description:hover {
+  transform: translateX(5px);
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.completed .task-description {
+  color: #777;
+}
+
+.task-line {
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  right: 0;
+  height: 1px;
+  background-color: var(--border-color);
+  opacity: 0.5;
+}
+
+.delete-button {
+  background: transparent;
+  border: none;
+  color: var(--accent-color);
+  font-size: 1.8rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: rgba(230, 57, 70, 0.1);
+  transform: scale(1.1);
+}
+
+.edit-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.save-button, .cancel-button {
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.save-button {
+  background-color: var(--completed-color);
+  color: white;
+}
+
+.cancel-button {
+  background-color: #e0e0e0;
+}
+
+.task-stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 5px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0.5;
 }
