@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Plans</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      justify-content: center;
+    }
+    section.pricing-section {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border-radius: 16px;
+      width: 320px;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 420px;
+      /* Glassmorphism */
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 32px 0 rgba(31, 38, 135, 0.45);
+    }
+    .card__title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .card__price {
+      font-size: 1.25rem;
+      color: #219150;
+      margin-bottom: 1rem;
+    }
+    .card__features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+      width: 100%;
+      flex: 1 1 auto;
+    }
+    .card__features li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .card__features li:last-child {
+      border-bottom: none;
+    }
+    .card__btn {
+      background: rgba(37, 99, 235, 0.85);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      align-self: stretch;
+      margin-top: auto;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      z-index: 1;
+      outline: none;
+    }
+    .card__btn:hover, .card__btn:focus {
+      background: rgba(30, 64, 175, 0.95);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
+      transform: translateY(-2px) scale(1.03);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Our Pricing Plans</h1>
+      <p>Choose the plan that fits your needs.</p>
+    </header>
+    <section class="pricing-section" aria-label="Pricing Plans">
+      <!-- Card Component Start -->
+      <article class="card" aria-label="Basic Plan">
+        <h2 class="card__title">Basic Plan</h2>
+        <p class="card__price">$9.99 <span aria-label="per month">/month</span></p>
+        <ul class="card__features">
+          <li>1 GB Storage</li>
+          <li>Basic Support</li>
+          <li>All Core Features</li>
+        </ul>
+        <button class="card__btn">Start Trial</button>
+      </article>
+      <!-- Card Component End -->
+      <!-- Card Component Start -->
+      <article class="card" aria-label="Pro Plan">
+        <h2 class="card__title">Pro Plan</h2>
+        <p class="card__price">$19.99 <span aria-label="per month">/month</span></p>
+        <ul class="card__features">
+          <li>10 GB Storage</li>
+          <li>Priority Support</li>
+          <li>All Core Features</li>
+          <li>Advanced Analytics</li>
+        </ul>
+        <button class="card__btn">Start Trial</button>
+      </article>
+      <!-- Card Component End -->
+      <!-- Card Component Start -->
+      <article class="card" aria-label="Enterprise Plan">
+        <h2 class="card__title">Enterprise Plan</h2>
+        <p class="card__price">$49.99 <span aria-label="per month">/month</span></p>
+        <ul class="card__features">
+          <li>100 GB Storage</li>
+          <li>24/7 Support</li>
+          <li>All Core Features</li>
+          <li>Custom Integrations</li>
+          <li>Dedicated Manager</li>
+        </ul>
+        <button class="card__btn">Contact Sales</button>
+      </article>
+      <!-- Card Component End -->
+    </section>
+  </main>
+</body>
+</html> 
