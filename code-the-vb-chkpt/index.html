@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victorian Neobrutalist Book Emporium</title>
+    <style>
+        :root {
+            --bg-color: #f8f1e9;
+            --text-color: #3a3226;
+            --accent-color: #8c5e58;
+            --card-color: #e8d8c0;
+            --border-color: #3a3226;
+            --shadow-color: rgba(58, 50, 38, 0.3);
+        }
+
+        .dark-mode {
+            --bg-color: #2a2321;
+            --text-color: #e8d8c0;
+            --accent-color: #c99e94;
+            --card-color: #3a3226;
+            --border-color: #8c5e58;
+            --shadow-color: rgba(200, 180, 160, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: normal;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .theme-toggle {
+            background: var(--card-color);
+            border: 2px solid var(--border-color);
+            padding: 8px 15px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 var(--shadow-color);
+        }
+
+        .theme-toggle:active {
+            transform: translate(5px, 5px);
+            box-shadow: none;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .book-card {
+            background: var(--card-color);
+            border: 3px solid var(--border-color);
+            padding: 25px;
+            box-shadow: 8px 8px 0 var(--shadow-color);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: cardFadeIn 0.8s forwards;
+            animation-delay: calc(var(--order) * 0.2s);
+        }
+
+        @keyframes cardFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .book-card:nth-child(1) { --order: 1; transform: translateY(20px); }
+        .book-card:nth-child(2) { --order: 2; transform: translateY(30px); }
+        .book-card:nth-child(3) { --order: 3; transform: translateY(40px); }
+
+        .book-card:hover {
+            transform: translateY(-5px) rotateY(5deg) rotateX(2deg);
+            box-shadow: 12px 12px 0 var(--shadow-color);
+            z-index: 10;
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 300px;
+            background-color: var(--bg-color);
+            border: 2px solid var(--border-color);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, var(--shadow-color) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .book-card:hover .book-cover::before {
+            opacity: 0.3;
+        }
+
+        .book-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .book-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .book-card:hover .book-title::after {
+            width: 100%;
+        }
+
+        .book-author {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .book-description {
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .book-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            background: var(--accent-color);
+            color: var(--card-color);
+            border: 2px solid var(--border-color);
+            padding: 8px 20px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 5px 5px 0 var(--shadow-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 var(--shadow-color);
+        }
+
+        .add-to-cart:active {
+            transform: translate(5px, 5px);
+            box-shadow: none;
+        }
+
+        .decoration {
+            position: absolute;
+            background-color: var(--accent-color);
+            opacity: 0.2;
+        }
+
+        .decoration-1 {
+            top: 10px;
+            right: 10px;
+            width: 50px;
+            height: 80px;
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+        }
+
+        .decoration-2 {
+            bottom: 10px;
+            left: 10px;
+            width: 60px;
+            height: 40px;
+            clip-path: polygon(0 0, 100% 20%, 100% 100%, 20% 100%);
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 3px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The Victorian Folio</h1>
+        <button class="theme-toggle" id="themeToggle">Toggle Night</button>
+    </header>
+
+    <main>
+        <div class="gallery">
+            <div class="book-card">
+                <div class="decoration decoration-1"></div>
+                <div class="decoration decoration-2"></div>
+                <div class="book-cover" style="background-color: #5e4b3e;"></div>
+                <h2 class="book-title">The Crimson Petal</h2>
+                <p class="book-author">by Michel Faber</p>
+                <p class="book-description">A gripping tale of a prostitute's rise in Victorian London, filled with intricate details of 19th century life and the stark realities of social hierarchy.</p>
+                <p class="book-price">£18.99</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="book-card">
+                <div class="decoration decoration-1"></div>
+                <div class="decoration decoration-2"></div>
+                <div class="book-cover" style="background-color: #7c6a5d;"></div>
+                <h2 class="book-title">Fingersmith</h2>
+                <p class="book-author">by Sarah Waters</p>
+                <p class="book-description">A twisting, turning thriller of deception and intrigue in the underbelly of Victorian England, where nothing is as it seems.</p>
+                <p class="book-price">£16.50</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="book-card">
+                <div class="decoration decoration-1"></div>
+                <div class="decoration decoration-2"></div>
+                <div class="book-cover" style="background-color: #4e3e32;"></div>
+                <h2 class="book-title">The Quincunx</h2>
+                <p class="book-author">by Charles Palliser</p>
+                <p class="book-description">An epic Dickensian mystery of inheritance and identity, weaving through the darkest corners of 19th century London.</p>
+                <p class="book-price">£22.75</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2023 The Victorian Folio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeToggle.textContent = 'Toggle Day';
+                } else {
+                    themeToggle.textContent = 'Toggle Night';
+                }
+            });
+
+            // Add to cart animation
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.textContent = 'Added!';
+                    setTimeout(() => {
+                        this.textContent = 'Add to Cart';
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
